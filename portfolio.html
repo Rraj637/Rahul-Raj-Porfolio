@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Raj - GIS Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Black Hole Animation */
+        .blackhole-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .blackhole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin: -200px 0 0 -200px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .accretion-disk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .disk-1 {
+            width: 400px;
+            height: 400px;
+            margin: -200px 0 0 -200px;
+            background: radial-gradient(circle at center, 
+                transparent 30%, 
+                rgba(255, 107, 0, 0.3) 40%, 
+                rgba(255, 165, 0, 0.4) 50%, 
+                rgba(255, 69, 0, 0.3) 60%, 
+                transparent 70%);
+            animation: rotate 8s linear infinite;
+        }
+
+        .disk-2 {
+            width: 320px;
+            height: 320px;
+            margin: -160px 0 0 -160px;
+            background: radial-gradient(circle at center, 
+                transparent 35%, 
+                rgba(255, 140, 0, 0.5) 45%, 
+                rgba(255, 200, 0, 0.6) 55%, 
+                transparent 65%);
+            animation: rotate 12s linear infinite reverse;
+        }
+
+        .disk-3 {
+            width: 240px;
+            height: 240px;
+            margin: -120px 0 0 -120px;
+            background: radial-gradient(circle at center, 
+                transparent 40%, 
+                rgba(255, 215, 0, 0.7) 50%, 
+                rgba(255, 255, 100, 0.5) 60%, 
+                transparent 70%);
+            animation: rotate 16s linear infinite;
+        }
+
+        .event-horizon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            margin: -60px 0 0 -60px;
+            background: radial-gradient(circle at center, 
+                #000000 0%, 
+                #0a0a0a 50%, 
+                transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9),
+                        inset 0 0 40px rgba(0, 0, 0, 1);
+        }
+
+        .gravitational-lensing {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            margin: -250px 0 0 -250px;
+            border-radius: 50%;
+            border: 2px solid rgba(100, 150, 255, 0.1);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* Content Styles */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ff6b35;
+        }
+
+        .header-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b35, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.8)); }
+        }
+
+        .header-content h2 {
+            font-size: 1.5em;
+            color: #ffa500;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            background: rgba(22, 33, 62, 0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: #ff6b35;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            background: rgba(26, 26, 46, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b35;
+            backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #ff6b35;
+            border-bottom: 2px solid #ffa500;
+            padding-bottom: 10px;
+        }
+
+        .profile-content {
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            border-color: #ff6b35;
+        }
+
+        .skill-card h3 {
+            color: #ffa500;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .work-item {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ffa500;
+            transition: transform 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: translateX(10px);
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .work-title {
+            font-size: 1.5em;
+            color: #ff6b35;
+        }
+
+        .work-period {
+            color: #ffa500;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .work-company {
+            color: #aaaaaa;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .education-item {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffa500;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .degree {
+            font-size: 1.3em;
+            color: #ff6b35;
+        }
+
+        .year {
+            color: #ffa500;
+            font-weight: bold;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            font-size: 2em;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: #ffa500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ff6b35;
+        }
+
+        footer {
+            background: #16213e;
+            text-align: center;
+            padding: 30px 20px;
+            color: #aaaaaa;
+            border-top: 3px solid #ff6b35;
+        }
+
+        .language-item {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffa500;
+        }
+
+        .presentation-item {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffa500;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .blackhole {
+                width: 300px;
+                height: 300px;
+                margin: -150px 0 0 -150px;
+            }
+
+            .disk-1 {
+                width: 300px;
+                height: 300px;
+                margin: -150px 0 0 -150px;
+            }
+
+            .disk-2 {
+                width: 240px;
+                height: 240px;
+                margin: -120px 0 0 -120px;
+            }
+
+            .disk-3 {
+                width: 180px;
+                height: 180px;
+                margin: -90px 0 0 -90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Black Hole Animation -->
+    <div class="blackhole-container">
+        <div class="blackhole">
+            <div class="gravitational-lensing"></div>
+            <div class="accretion-disk disk-1"></div>
+            <div class="accretion-disk disk-2"></div>
+            <div class="accretion-disk disk-3"></div>
+            <div class="event-horizon"></div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <header>
+            <div class="header-content">
+                <h1>RAHUL RAJ</h1>
+                <h2>GIS Professional | Cartographer | Spatial Analyst</h2>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section id="profile">
+                <h2>Profile</h2>
+                <div class="profile-content">
+                    <p>Dedicated GIS professional with expertise in spatial analysis, cartography, and geospatial technology. Currently contributing to SiteRecon as a Junior Cartographer, utilizing advanced skills in Quantum GIS and ArcGIS. Previously supported stereo digitization, 3D mapping, terrain feature extraction, and DTM/DEM creation at Drone Destination to enhance spatial data accuracy.</p>
+                    <p style="margin-top: 15px;">Specialized in GIS-based spatial analysis including digitization, and generation of DEM, DTM, and DSM for terrain and surface modeling. Committed to leveraging geospatial technology for sustainable development and innovative mapping solutions.</p>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>QGIS</h3>
+                        <p>Advanced spatial analysis and mapping</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>ArcGIS</h3>
+                        <p>Professional GIS software suite</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>SPSS</h3>
+                        <p>Statistical analysis</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>R Studio</h3>
+                        <p>Data analysis & visualization</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>JavaScript</h3>
+                        <p>Intermediate level</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Python</h3>
+                        <p>Intermediate level</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Work Experience</h2>
+                
+                <div class="work-item">
+                    <div class="work-header">
+                        <div class="work-title">Cartographer</div>
+                        <div class="work-period">JAN. 2026 - PRESENT</div>
+                    </div>
+                    <div class="work-company">FutureSafe Technology Pvt. Ltd. (SiteRecon)</div>
+                    <p>Performing GIS-based spatial analysis including digitization, and generation of DEM, DTM, and DSM for terrain and surface modeling. Contributing to advanced mapping projects utilizing Quantum GIS and ArcGIS for enhanced spatial data solutions.</p>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-header">
+                        <div class="work-title">GIS Analyst</div>
+                        <div class="work-period">OCT. 2025 - JAN. 2026</div>
+                    </div>
+                    <div class="work-company">Drone Destination Pvt. Ltd.</div>
+                    <p>Assisted in stereo digitization of aerial imagery, 3D mapping, terrain feature extraction, and DTM/DEM creation to ensure spatial data accuracy. Developed expertise in processing drone-captured imagery for precision mapping applications.</p>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <div class="degree">M.A. Geography</div>
+                        <div class="year">2023 - 2025</div>
+                    </div>
+                    <p><strong>Central University of South Bihar</strong></p>
+                    <p>CGPA: 8.05/10</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-header">
+                        <div class="degree">B.A. Geography</div>
+                        <div class="year">2017 - 2020</div>
+                    </div>
+                    <p><strong>Lalit Naryana Mithila University</strong></p>
+                    <p>Percentage: 62%</p>
+                </div>
+            </section>
+
+            <section id="research">
+                <h2>Research & Presentations</h2>
+                
+                <div class="presentation-item">
+                    <h3 style="color: #ff6b35; margin-bottom: 10px;">Paper Presentation</h3>
+                    <p><strong>XIX DGIS International Geography Conference</strong> (The Deccan Geographical Society of India)</p>
+                    <p><em>Theme:</em> Geospatial Technology for Sustainable Development: A Way Forward for Viksit Bharat</p>
+                    <p><em>Date:</em> 22nd - 24th February 2025</p>
+                </div>
+
+                <div class="presentation-item">
+                    <h3 style="color: #ff6b35; margin-bottom: 10px;">Dissertation</h3>
+                    <p><strong>An Examination of Unmet Need for Contraception in Bihar</strong></p>
+                    <p>Comprehensive research analyzing contraceptive access and utilization patterns in Bihar state.</p>
+                </div>
+
+                <div class="presentation-item">
+                    <h3 style="color: #ff6b35; margin-bottom: 10px;">Field Survey</h3>
+                    <p><strong>Socio-Economic Development Survey</strong></p>
+                    <p>Undertook household socio-economic survey to assess development aspirations in villages surrounding Gaya city (3rd Semester fieldwork). Collected and analyzed primary data on community development needs and aspirations.</p>
+                </div>
+            </section>
+
+            <section id="languages">
+                <h2>Languages</h2>
+                <div class="language-item">
+                    <h3 style="color: #ff6b35;">Hindi</h3>
+                    <p>Intermediate proficiency</p>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact Information</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <h3>Phone</h3>
+                        <a href="tel:+916200528417">+91 62005 28417</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <a href="mailto:Rahulraj122000@gmail.com">Rahulraj122000@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <h3>Location</h3>
+                        <p>Noida, U.P., India</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Rahul Raj. All rights reserved.</p>
+            <p>GIS Professional | Cartographer | Spatial Analyst</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for section animations
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Parallax effect for black hole
+        let lastScrollY = window.scrollY;
+        const blackholeContainer = document.querySelector('.blackhole-container');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const scrollDelta = scrollY - lastScrollY;
+            
+            // Parallax effect
+            blackholeContainer.style.transform = `translate(-50%, -50%) translateY(${scrollY * 0.3}px)`;
+            
+            // Adjust opacity based on scroll
+            const opacity = Math.max(0.1, 0.3 - (scrollY / 2000));
+            blackholeContainer.style.opacity = opacity;
+            
+            lastScrollY = scrollY;
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = '#ff6b35';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
